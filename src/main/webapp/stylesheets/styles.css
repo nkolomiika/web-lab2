@@ -1,0 +1,331 @@
+:root {
+    --pink_neon: 0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 9px #fff,
+    0 0 15px #fe019a,
+    0 0 20px #fe019a,
+    0 0 25px #fe019a;
+
+    --purple_neon: 0 0 4px #fff,
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 50px #bc13fe,
+    0 0 75px #bc13fe,
+    0 0 100px #bc13fe;
+
+    --blue_neon: 0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 9px #fff,
+    0 0 15px #04d9ff,
+    0 0 20px #04d9ff,
+    0 0 25px #04d9ff;
+
+    --purple: #bc13fe;
+
+    --pink: #fe019a;
+
+    --blue: #04d9ff;
+
+    --bright_black: #111111;
+}
+
+@font-face {
+    font-family: sans-serif;
+    src: url("../fonts/microsoftsansserif.ttf");
+}
+
+* {
+    font-family: "SansSerif", Arial, fantasy;
+    text-align: center;
+    font-weight: normal;
+}
+
+@keyframes flicker_pink {
+
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: var(--pink_neon);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+
+}
+
+body {
+    background: #1c1a1a;
+}
+
+.textBorderBlue {
+    border: 2px solid var(--blue);
+    width: 30%;
+    margin: 10px auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--blue);
+    padding: 5px;
+    outline: 1px solid var(--blue);
+}
+
+.textBorderPink {
+    border: 2px solid var(--pink);
+    width: 50%;
+    margin: 5% 0 0 36%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--pink);
+    padding: 5px;
+    outline: 1px solid var(--pink);
+}
+
+input[type=text]:focus, .textBorderPink:hover {
+    border: 2px solid var(--blue);
+    outline: 1px solid var(--blue);
+    box-shadow: 0 0 10px var(--blue);
+}
+
+.graphic {
+    width: 100%;
+    fill: var(--pink);
+    stroke: var(--pink);
+    fill-opacity: 0.2;
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+svg {
+    position: absolute;
+    right: 3%;
+    top: 5%;
+    border: 2px solid #fff;
+    box-shadow: inset 0 0 10px 3px var(--blue);
+    border-radius: 20px;
+    background-color: white;
+}
+
+.head {
+    position: absolute;
+    width: 60%;
+    height: 15%;
+    margin: 0 0 0 19%;
+    border-radius: 20px;
+    background: var(--bright_black);
+    border-right: #04d9ff;
+    animation: flicker_pink 1.5s infinite alternate;
+    box-shadow: var(--blue_neon);
+    font-style: italic;
+    color: #fff;
+    top: 5%;
+}
+
+.main {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    border-radius: 20px;
+    top: 54%;
+    left: 50%;
+    margin: -15% 0 0 -30%;
+    background-color: ghostwhite;
+    box-shadow: var(--pink_neon);
+}
+
+.value-tittle-X {
+    position: absolute;
+    float: left;
+    margin: 16% 5% 5% 0;
+}
+
+.value-tittle {
+    position: absolute;
+    float: left;
+    margin: 7% 5% 0 0;
+}
+
+.block-X {
+    position: absolute;
+    width: 100%;
+    margin-top: 3%;
+    margin-left: -3%;
+}
+
+.block-Y {
+    position: absolute;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 38%;
+}
+
+.block-R {
+    position: absolute;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 53%;
+}
+
+.radio-R {
+    position: absolute;
+    width: 60%;
+    margin: 7% 0 0 38%;
+}
+
+.title-header {
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    top: 5%;
+    margin: 0 0 0 5%;
+    border: 2px solid #fff;
+    box-shadow: inset 0 0 10px 3px var(--blue);
+    border-radius: 20px;
+    text-align: center;
+    background-color: white;
+}
+
+#result-block {
+    padding-bottom: 20px;
+    border: 2px solid var(--bright_black);
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+    color: white;
+    background: var(--bright_black);
+}
+
+.title {
+    position: absolute;
+    margin: 3% 0 0 25%;
+}
+
+.button {
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 0;
+    position: relative;
+    float: right;
+    background-color: var(--pink);
+    border: none;
+    color: white;
+    margin: 0 0 5% 15%;
+    padding: 5px;
+    width: 40px;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--pink);
+    border-radius: 4px;
+}
+
+.button:hover {
+    background: white;
+    box-shadow: 0 0 10px 5px var(--blue);
+    color: black;
+}
+
+.buttons {
+    position: absolute;
+    margin: 10% 0 0 0;
+    width: 40%;
+    left: 5%;
+}
+
+input[type='radio'] {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    outline: none;
+    box-shadow: 0 0 5px 0 var(--pink) inset;
+}
+
+input[type='radio']:hover, input[type='radio']:checked {
+    box-shadow: 0 0 5px 0 var(--blue) inset;
+}
+
+#checkButton {
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 2px;
+    position: relative;
+    float: right;
+    background-color: var(--pink);
+    border: none;
+    color: white;
+    margin: 75% 25% 5% 0;
+    padding: 10px;
+    width: 40%;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--pink);
+    border-radius: 4px;
+}
+
+#checkButton:hover {
+    background: white;
+    box-shadow: 0 0 10px 5px var(--blue);
+    color: black;
+}
+
+#no-results {
+    position: absolute;
+    margin: 5% 0 0 10%;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 60%;
+    height: 20%;
+    border-radius: 20px;
+    left: 50%;
+    top: 80%;
+    margin: 65px 0 10% -30%;
+    background-color: ghostwhite;
+    box-shadow: var(--pink_neon);
+}
+
+.footer-result {
+    position: absolute;
+    width: 60%;
+    height: 15%;
+    border-radius: 20px;
+    left: 50%;
+    top: 55%;
+    bottom: 5%;
+    margin: 5% 0 0 -30%;
+    background-color: ghostwhite;
+    box-shadow: var(--pink_neon);
+}
+
+.notification {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background: var(--bright_black);
+}
+
+#no-results-block {
+    margin-top: 5%;
+}
+
+#outputTable {
+    border: 2px solid var(--bright_black);
+    border-collapse: collapse;
+    margin: auto;
+    width: 90%;
+}
+
+#outputTable th {
+    background-color: var(--bright_black);
+    color: white;
+}
+
+#outputTable * {
+    padding: 25px;
+}

@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'web'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    compileOnly('jakarta.platform:jakarta.jakartaee-web-api:9.0.0')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:6.0.0')
+    compileOnly('jakarta.json:jakarta.json-api:2.1.1')
+    compileOnly('jakarta.json.bind:jakarta.json.bind-api:3.0.0')
+    compileOnly('jakarta.ejb:jakarta.ejb-api:4.0.1')
+
+    implementation('com.google.guava:guava:31.0.1-jre')
+    implementation('org.apache.commons:commons-lang3:3.12.0')
+    implementation('com.google.code.gson:gson:2.10.1')
+}
+
+copy {
+    from 'C:\\Users\\mad_duck\\Documents\\GitHub\\web\\lab2\\build\\libs'
+    into 'C:\\wildfly-30.0.0.Final\\standalone\\deployments'
+    include '*.war'
+}
+
+
+test {
+    useJUnitPlatform()
+}
