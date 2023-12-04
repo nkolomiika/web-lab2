@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div>
-                    <svg id="svg" width="400" height="400">
+                    <svg id="svg" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
                         <polygon points="200,200 200,50 350,200" class="graphic"></polygon>
                         <polygon points="200,200 125,200 125,350 200,350" class="graphic"></polygon>
                         <path d="M 200 275 A 75 75, 1, 0, 0, 275 200 L 200 200" class="graphic"/>
@@ -126,48 +126,48 @@
 </div>
 <div class="footer">
     <% PointManager pointManager = (PointManager) request.getServletContext().getAttribute("points");
-    if (pointManager == null) {
+        if (pointManager == null) {
     %>
-    <div id="no-results">
-        <h3>
-            <span class="notification">Нет результатов</span>
-        </h3>
-    </div>
+
+    <h3 id="no-results">
+        <span class="notification">Нет результатов</span>
+    </h3>
+    </h4>
+    <table id="outputTable">
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Точка входит в ОДЗ</th>
+        </tr>
+    </table>
+
     <% } else { %>
-    <div id="error">
-        <h3 id="error-message">
-            <span class="notification"></span>
-        </h3>
-    </div>
-    <div>
-        <table id="outputTable">
-            <td colspan="4">
-                <tr>
-                    <th>X</th>
-                    <th>Y</th>
-                    <th>R</th>
-                    <th>Точка входит в ОДЗ</th>
-                </tr>
-                <% for (PointData point : pointManager.getPoints()) { %>
-                <tr>
-                    <td>
-                        <%= point.getPoint().getX() %>
-                    </td>
-                    <td>
-                        <%= point.getPoint().getY() %>
-                    </td>
-                    <td>
-                        <%= point.getRadius() %>
-                    </td>
-                    <td>
-                        <%= point.getStatus() ? "<span>Попал</span>"
-                                : "<span>Промазал</span>" %>
-                    </td>
-                </tr>
-                <% } %>
+    <table id="outputTable">
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Точка входит в ОДЗ</th>
+        </tr>
+        <% for (PointData point : pointManager.getPoints()) { %>
+        <tr>
+            <td>
+                <%= point.getPoint().getX() %>
             </td>
-        </table>
-    </div>
+            <td>
+                <%= point.getPoint().getY() %>
+            </td>
+            <td>
+                <%= point.getRadius() %>
+            </td>
+            <td>
+                <%= point.getStatus() ? "<span>Попал</span>"
+                        : "<span>Промазал</span>" %>
+            </td>
+        </tr>
+        <% } %>
+    </table>
     <% } %>
 </div>
 </body>

@@ -272,33 +272,32 @@ input[type='radio']:hover, input[type='radio']:checked {
 }
 
 #no-results {
-    position: absolute;
-    margin: 5% 0 0 10%;
+    position: center;
+    margin: 20px;
 }
 
 .footer {
-    display: flex;
+    display: block;
     justify-content: center;
     position: absolute;
-    width: 60%;
-    height: 20%;
     border-radius: 20px;
     left: 50%;
+    width: 60%;
     top: 80%;
-    margin: 65px 0 10% -30%;
+    margin: 4% 0 10% -30%;
     background-color: ghostwhite;
     box-shadow: var(--pink_neon);
 }
 
 .footer-result {
+    display: block;
+    justify-content: center;
     position: absolute;
-    width: 60%;
-    height: 15%;
     border-radius: 20px;
     left: 50%;
-    top: 55%;
-    bottom: 5%;
-    margin: 5% 0 0 -30%;
+    width: 60%;
+    top: 15%;
+    margin: 4% 0 10% -470px;
     background-color: ghostwhite;
     box-shadow: var(--pink_neon);
 }
@@ -310,14 +309,12 @@ input[type='radio']:hover, input[type='radio']:checked {
     background: var(--bright_black);
 }
 
-#no-results-block {
-    margin-top: 5%;
-}
-
 #outputTable {
     border: 2px solid var(--bright_black);
     border-collapse: collapse;
-    margin: auto;
+    margin-bottom: 3%;
+    margin-left: 5%;
+    margin-top: 30px;
     width: 90%;
 }
 
@@ -328,4 +325,8 @@ input[type='radio']:hover, input[type='radio']:checked {
 
 #outputTable * {
     padding: 25px;
+}
+
+#goBack {
+    margin: 20px 0 20px 0;
 }

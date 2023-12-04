@@ -1,13 +1,11 @@
-"use strict";
-
 var x, y, r;
 
 var svg = document.getElementById("svg");
 
 function drawPoint(x, y, r, result) {
     let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", x * 60 * 2 / r + 150);
-    circle.setAttribute("cy", -y * 60 * 2 / r + 150);
+    circle.setAttribute("cx", x * 75 * 2 / r + 200);
+    circle.setAttribute("cy", -y * 75 * 2 / r + 200);
     circle.setAttribute("r", 3);
     circle.style.fill = result ? "#09a53d" : "#a50909";
     svg.appendChild(circle);
@@ -19,8 +17,8 @@ function setX(val) {
 }
 
 function transformSvgToPlane(svgX, svgY, r) {
-    let planeX = (svgX - 150) / (120 / r);
-    let planeY = (150 - svgY) / (120 / r);
+    let planeX = (svgX - 200) / (150 / r);
+    let planeY = (200 - svgY) / (150 / r);
 
     return {x: planeX, y: planeY};
 }
@@ -29,8 +27,7 @@ function addToTable(x, y, r, result) {
     const table = document.getElementById("outputTable");
     const span = document.getElementById("no-results");
     if (span) {
-        span.innerText = "";
-        span.className = "notification";
+        span.remove();
     }
 
     const newRow = table.insertRow();
@@ -140,7 +137,7 @@ document.getElementById("checkButton").onclick = function () {
 };
 
 function createNotification(message) {
-    let output = document.getElementById("error")
+    /*let output = document.getElementById("error")
 
     if (document.getElementById("error")) {
         document.getElementById("error").remove()
@@ -149,9 +146,20 @@ function createNotification(message) {
     let newNotification = document.createElement("h3")
     newNotification.setAttribute("id", "error-message")
     newNotification.innerHTML = "<span class='notification'>" + message + "</span>"
-    output.prepend(newNotification)
+    output.prepend(newNotification)*/
 }
 
+const btn = document.querySelectorAll('.button')
+btn.forEach(b => b.addEventListener('click', function onClick(){
+    btn.forEach(button => {
+        button.style.boxShadow = '0 0 15px var(--pink)'
+        button.style.background = 'var(--pink)'
+        button.style.color = 'white'
+    });
+    b.style.color = 'black'
+    b.style.background = 'white'
+    b.style.boxShadow = '0 0 10px 5px var(--blue)'
+}))
 
 function validateX() {
     x = document.getElementById("X").value

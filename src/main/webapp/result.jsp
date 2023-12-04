@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="Барсуков Максим Андреевич">
+    <meta name="author" content="Коломиец Никита Сергеевич">
     <meta name="description" content="Веб-программирование: Лабораторная работа №2. Результаты проверки">
     <meta name="keywords" content="ITMO, ИТМО, ПИиКТ, ВТ, Лабораторная работа, Веб-программирование"/>
 
@@ -23,52 +23,37 @@
     <h2 class="flickerPinkNeonText">Веб-программирование, Лабораторная работа №2, Вариант: 521700</h2>
     <h3 class="pinkNeonText">Коломиец Никита Сергеевич, Р3208</h3>
 </div>
-<div class="footer">
-    <% PointManager pointManager = (PointManager) request.getSession().getAttribute("context");
-        if (pointManager == null) {
-    %>
-    <div id="no-results">
-        <h3>
-            <span class="notification">Нет результатов</span>
-        </h3>
+<div class="footer-result">
+    <div id="goBack">
+        <a href="${pageContext.request.contextPath}/index.jsp">Вернуться к форме</a>
     </div>
-    <% } else { %>
-    <div id="error">
-        <h3>
-            <span class="notification"></span>
-        </h3>
-    </div>
+    <% PointManager pointManager = (PointManager) request.getServletContext().getAttribute("points");%>
     <table id="outputTable">
-        <td colspan="4">
-            <tr>
-                <th>X</th>
-                <th>Y</th>
-                <th>R</th>
-                <th>Точка входит в ОДЗ</th>
-            </tr>
-            <% for (PointData point : pointManager.getPoints()) { %>
-            <tr>
-                <td>
-                    <%= point.getPoint().getX() %>
-                </td>
-                <td>
-                    <%= point.getPoint().getY() %>
-                </td>
-                <td>
-                    <%= point.getRadius() %>
-                </td>
-                <td>
-                    <%= point.getStatus() ? "<span>Попал</span>"
-                            : "<span>Промазал</span>" %>
-                </td>
-            </tr>
-            <% } %>
-        </td>
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Точка входит в ОДЗ</th>
+        </tr>
+        <% for (PointData point : pointManager.getPoints()) { %>
+        <tr>
+            <td>
+                <%= point.getPoint().getX() %>
+            </td>
+            <td>
+                <%= point.getPoint().getY() %>
+            </td>
+            <td>
+                <%= point.getRadius() %>
+            </td>
+            <td>
+                <%= point.getStatus() ? "<span>Попал</span>"
+                        : "<span>Промазал</span>" %>
+            </td>
+        </tr>
+        <% } %>
     </table>
-    <% } %>
 </div>
-</div>
-
 <script src="js/script.js"></script>
 </body>
 </html>
