@@ -55,6 +55,11 @@ body {
     background: #1c1a1a;
 }
 
+#screen {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
 .textBorderBlue {
     border: 2px solid var(--blue);
     width: 30%;
@@ -113,7 +118,8 @@ svg {
     position: absolute;
     width: 60%;
     height: 15%;
-    margin: 0 0 0 19%;
+    left: 19%;
+    margin: auto;
     border-radius: 20px;
     background: var(--bright_black);
     border-right: #04d9ff;
@@ -129,9 +135,9 @@ svg {
     width: 60%;
     height: 60%;
     border-radius: 20px;
-    top: 54%;
-    left: 50%;
-    margin: -15% 0 0 -30%;
+    top: 25%;
+    left: 19%;
+    margin: auto;
     background-color: ghostwhite;
     box-shadow: var(--pink_neon);
 }
@@ -273,7 +279,7 @@ input[type='radio']:hover, input[type='radio']:checked {
 
 #no-results {
     position: center;
-    margin: 20px;
+    margin: 35px 0 0 20px;
 }
 
 .footer {
@@ -281,10 +287,10 @@ input[type='radio']:hover, input[type='radio']:checked {
     justify-content: center;
     position: absolute;
     border-radius: 20px;
-    left: 50%;
+    left: 19%;
     width: 60%;
-    top: 80%;
-    margin: 4% 0 10% -30%;
+    top: 90%;
+    margin: auto;
     background-color: ghostwhite;
     box-shadow: var(--pink_neon);
 }
@@ -294,10 +300,10 @@ input[type='radio']:hover, input[type='radio']:checked {
     justify-content: center;
     position: absolute;
     border-radius: 20px;
-    left: 50%;
+    left: 19%;
     width: 60%;
-    top: 15%;
-    margin: 4% 0 10% -470px;
+    top: 25%;
+    margin: auto;
     background-color: ghostwhite;
     box-shadow: var(--pink_neon);
 }
@@ -329,4 +335,8 @@ input[type='radio']:hover, input[type='radio']:checked {
 
 #goBack {
     margin: 20px 0 20px 0;
+}
+
+#notify {
+    background: var(--pink);
 }

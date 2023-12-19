@@ -19,40 +19,48 @@
     <title>Результаты проверки | Веб-программирование</title></head>
 
 <body>
-<div class="head">
-    <h2 class="flickerPinkNeonText">Веб-программирование, Лабораторная работа №2, Вариант: 521700</h2>
-    <h3 class="pinkNeonText">Коломиец Никита Сергеевич, Р3208</h3>
-</div>
-<div class="footer-result">
-    <div id="goBack">
-        <a href="${pageContext.request.contextPath}/index.jsp">Вернуться к форме</a>
+<div id="screen">
+    <div class="head">
+        <h2 class="flickerPinkNeonText">Веб-программирование, Лабораторная работа №2, Вариант: 521700</h2>
+        <h3 class="pinkNeonText">Коломиец Никита Сергеевич, Р3208</h3>
     </div>
-    <% PointManager pointManager = (PointManager) request.getServletContext().getAttribute("points");%>
-    <table id="outputTable">
-        <tr>
-            <th>X</th>
-            <th>Y</th>
-            <th>R</th>
-            <th>Точка входит в ОДЗ</th>
-        </tr>
-        <% for (PointData point : pointManager.getPoints()) { %>
-        <tr>
-            <td>
-                <%= point.getPoint().getX() %>
-            </td>
-            <td>
-                <%= point.getPoint().getY() %>
-            </td>
-            <td>
-                <%= point.getRadius() %>
-            </td>
-            <td>
-                <%= point.getStatus() ? "<span>Попал</span>"
-                        : "<span>Промазал</span>" %>
-            </td>
-        </tr>
-        <% } %>
-    </table>
+    <div class="footer-result">
+        <div id="goBack">
+            <a href="${pageContext.request.contextPath}/index.jsp">Вернуться к форме</a>
+        </div>
+        <% int prev = (int) request.getServletContext().getAttribute("previous_size");
+            int now = (int) request.getServletContext().getAttribute("size");
+            PointManager pointManager = (PointManager) request.getServletContext().getAttribute("points");%>
+        <table id="outputTable">
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Точка входит в ОДЗ</th>
+            </tr>
+            <% if (now - prev > 0) {
+                for (PointData point : pointManager.getPoints()) { %>
+            <tr>
+                <td>
+                    <%= point.getPoint().getX() %>
+                </td>
+                <td>
+                    <%= point.getPoint().getY() %>
+                </td>
+                <td>
+                    <%= point.getRadius() %>
+                </td>
+                <td>
+                    <%= point.getStatus() ? "<span>Попал</span>"
+                            : "<span>Промазал</span>" %>
+                </td>
+            </tr>
+            <%
+                    }
+                }
+            %>
+        </table>
+    </div>
 </div>
 <script src="js/script.js"></script>
 </body>

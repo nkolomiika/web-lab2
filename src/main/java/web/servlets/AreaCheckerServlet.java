@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import web.managers.Parser;
 import web.managers.PointManager;
 import web.models.Point;
 import web.models.PointData;
@@ -27,6 +28,13 @@ public class AreaCheckerServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+
+            if (!Parser.isCorrect(request.getParameter("X"),
+                    request.getParameter("Y"),
+                    request.getParameter("R"))) {
+                throw new Exception("Wrong parameters");
+            }
+
             var x = Double.parseDouble(request.getParameter("X"));
             var y = Double.parseDouble(request.getParameter("Y"));
             var r = Double.parseDouble(request.getParameter("R"));
@@ -34,12 +42,17 @@ public class AreaCheckerServlet extends HttpServlet {
 
             var context = getServletContext();
 
-            if (context.getAttribute("points") == null)
+            if (context.getAttribute("points") == null) {
                 context.setAttribute("points", new PointManager());
+                context.setAttribute("previous_size", 0);
+                context.setAttribute("size", 0);
+            }
 
             var points = (PointManager) context.getAttribute("points");
+            context.setAttribute("previous_size", points.getPoints().size());
             points.addPoint(pointData);
             context.setAttribute("points", points);
+            context.setAttribute("size", points.getPoints().size());
 
             var action = request.getParameter("action");
             if ("submitForm".equals(action)) {

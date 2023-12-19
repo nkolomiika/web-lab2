@@ -41,6 +41,7 @@ function addToTable(x, y, r, result) {
 
 async function checkPoint(x, y, r) {
     const form = new FormData();
+    //console.log(x, y, r)
     form.append("X", x);
     form.append("Y", y);
     form.append("R", r);
@@ -61,7 +62,6 @@ async function checkPoint(x, y, r) {
 
 async function sendCoordinatesToServer(x, y, r) {
     const data = await checkPoint(x, y, r);
-
     if (!data.error) {
         drawPoint(x, y, r, data.result);
         addToTable(x, y, r, data.result);
@@ -116,27 +116,18 @@ document.getElementById("checkButton").onclick = function () {
         const url = "controller?" + new URLSearchParams(form).toString();
 
         window.location.href = url;
-        /*
-        const form = $('<form>', {
-            action: "controller",
-            method: "get"
-        });
-
-        const args = {action: "submitForm", X: x, Y: y, R: r};
-        Object.entries(args).forEach(entry => {
-            const [key, value] = entry;
-            $('<input>').attr({
-                type: "hidden",
-                name: key,
-                value: value
-            }).appendTo(form);
-        });
-        form.appendTo('body').submit()
-         */
     }
 };
 
 function createNotification(message) {
+    notie.alert({
+        type: "error", // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+        text: message,
+        stay: false, // optional, default = false
+        time: 3, // optional, default = 3, minimum = 1,
+        position: "top" // optional, default = 'top', enum: ['top', 'bottom']
+    })
+
     /*let output = document.getElementById("error")
 
     if (document.getElementById("error")) {
@@ -149,8 +140,9 @@ function createNotification(message) {
     output.prepend(newNotification)*/
 }
 
+
 const btn = document.querySelectorAll('.button')
-btn.forEach(b => b.addEventListener('click', function onClick(){
+btn.forEach(b => b.addEventListener('click', function onClick() {
     btn.forEach(button => {
         button.style.boxShadow = '0 0 15px var(--pink)'
         button.style.background = 'var(--pink)'
@@ -163,7 +155,6 @@ btn.forEach(b => b.addEventListener('click', function onClick(){
 
 function validateX() {
     x = document.getElementById("X").value
-    console.log(x)
     if (isNumeric(x)) return true;
     else {
         createNotification("Значение X не выбрано");
@@ -173,8 +164,7 @@ function validateX() {
 
 function validateY() {
     y = document.querySelector("input[name=Y-input]").value.replace(",", ".")
-    console.log(y)
-    if (y === undefined) {
+    if (y === "") {
         createNotification("Y не введён");
         return false;
     } else if (!isNumeric(y)) {

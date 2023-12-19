@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import web.managers.Parser;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,41 +17,37 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException, ServletException {
         processRequest(req, resp);
     }
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException {
         final var INVALID_DATA_MESSAGE = "Please set data in correct form";
 
         try {
             if (request.getParameter("X") == null
                     || request.getParameter("Y") == null
                     || request.getParameter("R") == null) {
-                sendError(response, INVALID_DATA_MESSAGE);
-                return;
+                throw new Exception(INVALID_DATA_MESSAGE);
             }
 
             if (request.getParameter("X").isEmpty()
                     || request.getParameter("Y").isEmpty()
                     || request.getParameter("R").isEmpty()) {
-                sendError(response, INVALID_DATA_MESSAGE);
-                return;
+                throw new Exception(INVALID_DATA_MESSAGE);
             }
 
-            if (Double.parseDouble(request.getParameter("X")) < -3
-                    || Double.parseDouble(request.getParameter("X")) > 3) {
-                sendError(response, INVALID_DATA_MESSAGE);
-                return;
+            if (!Parser.isCorrect(request.getParameter("X"),
+                    request.getParameter("Y"),
+                    request.getParameter("R"))) {
+                throw new Exception(INVALID_DATA_MESSAGE);
             }
-
-            Double.parseDouble(request.getParameter("Y"));
-            Double.parseDouble(request.getParameter("R"));
 
             response.sendRedirect("./areaChecker?" + request.getQueryString());
         } catch (Exception e) {
-            sendError(response, e.toString());
+            //sendError(response, e.toString());
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
     }
 

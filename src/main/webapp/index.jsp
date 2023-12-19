@@ -16,6 +16,7 @@
 
     <link href="stylesheets/styles.css" rel="stylesheet">
     <link rel="icon" type="image/jpg" href="images/favicon.png">
+    <link id="notify" rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
     <title>Лабораторная работа №2 | Веб-программирование</title>
 </head>
 
@@ -125,7 +126,9 @@
     </div>
 </div>
 <div class="footer">
-    <% PointManager pointManager = (PointManager) request.getServletContext().getAttribute("points");
+    <%  int prev = 0;
+        int now = 0;
+        PointManager pointManager = (PointManager) request.getServletContext().getAttribute("points");
         if (pointManager == null) {
     %>
 
@@ -142,7 +145,9 @@
         </tr>
     </table>
 
-    <% } else { %>
+    <% } else {
+        prev = (int) request.getServletContext().getAttribute("previous_size");
+        now = (int) request.getServletContext().getAttribute("size");%>
     <table id="outputTable">
         <tr>
             <th>X</th>
@@ -150,7 +155,8 @@
             <th>R</th>
             <th>Точка входит в ОДЗ</th>
         </tr>
-        <% for (PointData point : pointManager.getPoints()) { %>
+        <% if (now - prev > 0) {
+            for (PointData point : pointManager.getPoints()) { %>
         <tr>
             <td>
                 <%= point.getPoint().getX() %>
@@ -168,12 +174,14 @@
         </tr>
         <% } %>
     </table>
-    <% } %>
+    <% }
+    }%>
 </div>
 </body>
+<script src="https://unpkg.com/notie"></script>
 <script
         src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
-</html>
+</html> 
